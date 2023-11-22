@@ -1,3 +1,5 @@
+import type { MenuProps, SubMenuProps, MenuItemProps } from 'element-plus'
+
 export type TreeNode = {
   id: string;
   text: string;
@@ -5,3 +7,5 @@ export type TreeNode = {
   url: string | null;
   children: TreeNode[];
 };
+
+export { MenuProps, SubMenuProps, MenuItemProps }

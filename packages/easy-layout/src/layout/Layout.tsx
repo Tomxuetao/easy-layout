@@ -4,37 +4,52 @@ import { Header } from '../header'
 import { Aside } from '../aside'
 import { Main } from '../main'
 import type { PropType } from 'vue'
-import { TreeNode } from 'packages/easy-layout/src/layout/types'
+import { TreeNode, MenuProps, SubMenuProps, MenuItemProps } from './types'
 
 export default defineComponent({
   name: 'EvLayout',
 
   inheritAttrs: true,
+  props: {
+    imgBg: {
+      type: String,
+      required: false
+    },
+    menuList: {
+      required: true,
+      default: () => [],
+      type: Array as PropType<TreeNode[]>
+    },
+    menuProps: {
+      required: false,
+      default: () => {},
+      type: Object as PropType<MenuProps>
+    },
+    subMenuProps: {
+      required: false,
+      type: Object as PropType<SubMenuProps>
+    },
+    menuItemProps: {
+      required: false,
+      type: Object as PropType<MenuItemProps>
+    }
+  },
+
+  emits: ['menuItemClick'],
 
   slots: Object as SlotsType<{
     logo: {};
     fold: {};
     menuIcon: {};
   }>,
-  props: {
-    imgBg: {
-      type: String,
-      required: false
-    },
-    collapse: {
-      type: Boolean,
-      required: false,
-      default: () => false
-    },
-    menuList: {
-      required: true,
-      default: () => [],
-      type: Array as PropType<TreeNode[]>
-    }
-  },
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const { logo, fold, menuIcon } = slots
     const { imgBg, menuList } = props
+
+    const menuItemClick = (data: TreeNode) => {
+      emit('menuItemClick', data)
+    }
+
     return () => {
       return (
         <div class="ev-layout" style={`background-image: url(${imgBg})`}>
@@ -42,7 +57,10 @@ export default defineComponent({
           <Aside
             v-slots={{ fold, menuIcon }}
             menuList={menuList}
-            collapse={props.collapse}
+            menuProps={props.menuProps}
+            subMenuProps={props.subMenuProps}
+            menuItemProps={props.menuItemProps}
+            onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
           <Main></Main>
         </div>

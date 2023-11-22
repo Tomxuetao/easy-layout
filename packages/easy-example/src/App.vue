@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { reactive, ref } from 'vue'
 import ImgBg from '@/assets/img/img-bg.webp'
-import { Layout as EvLayout } from 'easy-layout'
-import { TreeNode } from 'easy-layout/es/layout/types'
-import { ref } from 'vue'
 import SvgIcon from '@/components/svg-icon.vue'
+
+import { Layout as EvLayout } from 'easy-layout'
+import type { TreeNode, MenuProps } from 'easy-layout/es/layout/types'
 
 const menuList: TreeNode[] = [
   {
@@ -74,14 +75,28 @@ const menuList: TreeNode[] = [
 ]
 
 const collapse = ref(false)
+const menuProps: MenuProps = reactive({
+  collapse: collapse,
+  uniqueOpened: true,
+  defaultActive: '2-1'
+}) as MenuProps
+
+const toggleCollapse = () => {
+  collapse.value = !collapse.value
+}
+
+const menuItemClick = (data: TreeNode) => {
+  console.log(data)
+}
 </script>
 
 <template>
   <ev-layout
     class="layout-wrap"
     :img-bg="ImgBg"
-    :collapse="collapse"
     :menu-list="menuList"
+    :menu-props="menuProps"
+    @menu-item-click="(data) => menuItemClick(data)"
   >
     <template #logo>
       <div class="logo-wrap">
@@ -98,11 +113,7 @@ const collapse = ref(false)
     <template #fold>
       <div
         class="fold-wrap"
-        @click="
-          () => {
-            collapse = !collapse;
-          }
-        "
+        @click="toggleCollapse()"
       >
         <img
           :class="['fold-img', collapse ? 'img-fold' : 'img-open']"

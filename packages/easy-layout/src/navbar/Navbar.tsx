@@ -1,6 +1,6 @@
 import { defineComponent, SlotsType } from 'vue'
 import type { PropType } from 'vue'
-import { TreeNode } from '../layout/types'
+import { TreeNode, SubMenuProps, MenuItemProps } from '../layout/types'
 
 import { ElSubMenu, ElMenuItem } from 'element-plus'
 
@@ -15,13 +15,23 @@ export default defineComponent({
     menu: {
       type: Object as PropType<TreeNode>,
       required: true
+    },
+    subMenuProps: {
+      required: false,
+      type: Object as PropType<SubMenuProps>
+    },
+    menuItemProps: {
+      required: false,
+      type: Object as PropType<MenuItemProps>
     }
   },
-  setup(props, { slots }) {
+
+  emits: ['menuItemClick'],
+  setup(props, { slots, emit }) {
     const { menuIcon } = slots
 
     const menuItemClick = (data: TreeNode) => {
-      console.log(data)
+      emit('menuItemClick', data)
     }
 
     return () => {
@@ -45,9 +55,19 @@ export default defineComponent({
 
       if (menu.children?.length) {
         return (
-          <ElSubMenu index={menu.id} v-slots={subMenuSlots}>
+          <ElSubMenu
+            index={menu.id}
+            {...props.subMenuProps}
+            v-slots={subMenuSlots}
+          >
             {menu.children.map((item) => (
-              <ev-navbar key={item.id} menu={item}></ev-navbar>
+              <ev-navbar
+                key={item.id}
+                menu={item}
+                subMenuProps={props.subMenuProps}
+                menuItemProps={props.menuItemProps}
+                onMenuItemClick={() => menuItemClick(item)}
+              ></ev-navbar>
             ))}
           </ElSubMenu>
         )
@@ -56,6 +76,7 @@ export default defineComponent({
           <ElMenuItem
             index={menu.id}
             v-slots={menuItemSlots}
+            {...props.menuItemProps}
             onClick={() => menuItemClick(menu)}
           ></ElMenuItem>
         )

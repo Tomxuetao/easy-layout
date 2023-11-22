@@ -1,6 +1,9 @@
 import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
-import { TreeNode } from '../layout/types'
+import {TreeNode,
+  MenuProps,
+  SubMenuProps,
+  MenuItemProps} from '../layout/types'
 
 import { ElMenu, ElScrollbar } from 'element-plus'
 
@@ -13,25 +16,39 @@ const asideProps = {
     default: () => [],
     type: Array as PropType<TreeNode[]>
   },
-
-  collapse: {
-    type: Boolean,
+  menuProps: {
     required: false,
-    default: () => false
+    type: Object as PropType<MenuProps>
+  },
+  subMenuProps: {
+    required: false,
+    type: Object as PropType<SubMenuProps>
+  },
+  menuItemProps: {
+    required: false,
+    type: Object as PropType<MenuItemProps>
   }
 }
+
 export default defineComponent({
   name: 'EvAside',
+  props: asideProps,
+
+  emits: ['menuItemClick'],
 
   slots: Object as SlotsType<{
     fold: any;
     menuIcon: any;
   }>,
-  props: asideProps,
 
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const { menuList } = props
     const { fold, menuIcon } = slots
+
+    const menuItemClick = (data: TreeNode) => {
+      emit('menuItemClick', data)
+    }
+
     return () => {
       if (!menuList.length) {
         return <aside class="ev-aside"></aside>
@@ -39,12 +56,15 @@ export default defineComponent({
       return (
         <aside class="ev-aside">
           <ElScrollbar>
-            <ElMenu collapse={props.collapse}>
+            <ElMenu {...props.menuProps}>
               {menuList.map((item) => (
                 <Navbar
                   v-slots={{ menuIcon }}
                   menu={item}
                   key={item.id}
+                  subMenuProps={props.subMenuProps}
+                  menuItemProps={props.menuItemProps}
+                  onMenuItemClick={(data) => menuItemClick(data)}
                 ></Navbar>
               ))}
             </ElMenu>
