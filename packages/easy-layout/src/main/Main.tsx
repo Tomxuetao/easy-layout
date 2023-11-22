@@ -1,10 +1,16 @@
-import { defineComponent } from 'vue'
+import { defineComponent, SlotsType } from 'vue'
 
 export default defineComponent({
   name: 'EvMain',
-  setup() {
+
+  slots: Object as SlotsType<{
+    router: any;
+  }>,
+
+  setup(_, { slots }) {
+    const { router } = slots
     return () => {
-      return <main class="ev-main">123</main>
+      return <main class="ev-main">{router?.()}</main>
     }
   }
 })

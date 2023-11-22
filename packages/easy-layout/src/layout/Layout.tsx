@@ -40,10 +40,12 @@ export default defineComponent({
   slots: Object as SlotsType<{
     logo: {};
     fold: {};
+    router: {};
     menuIcon: {};
   }>,
+
   setup(props, { slots, emit }) {
-    const { logo, fold, menuIcon } = slots
+    const { logo, fold, router, menuIcon } = slots
     const { imgBg, menuList } = props
 
     const menuItemClick = (data: TreeNode) => {
@@ -62,7 +64,7 @@ export default defineComponent({
             menuItemProps={props.menuItemProps}
             onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
-          <Main></Main>
+          <Main v-slots={{ router }}></Main>
         </div>
       )
     }
