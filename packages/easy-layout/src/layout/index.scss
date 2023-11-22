@@ -1,0 +1,10 @@
+.ev-layout {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content min-content 1fr;
+}

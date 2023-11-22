@@ -1,0 +1,38 @@
+{
+  "name": "easy-layout",
+  "private": false,
+  "version": "0.0.1",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "license": "ISC",
+  "main": "lib/easy-layout.cjs.js",
+  "module": "es/index.mjs",
+  "style": "lib/index.css",
+  "typings": "lib/index.d.ts",
+  "unpkg": "lib/easy-layout.min.js",
+  "jsdelivr": "lib/easy-layout.min.js",
+  "scripts": {
+    "build": "easy-cli build"
+  },
+  "devDependencies": {
+    "@easy/cli": "workspace:*",
+    "vue": "^3.3.8",
+    "vite": "^4.5.0",
+    "sass": "^1.69.5",
+    "vue-tsc": "^1.8.22",
+    "typescript": "^5.2.2",
+    "element-plus": "^2.4.2",
+    "@types/node": "^20.9.0",
+    "vite-plugin-dts": "^3.6.3",
+    "@vitejs/plugin-vue": "^4.4.1",
+    "unplugin-auto-import": "^0.16.7",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "unplugin-vue-components": "^0.25.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.4",
+    "element-plus": "^2.4.2"
+  }
+}

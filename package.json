@@ -1,0 +1,51 @@
+{
+  "name": "easy-layout",
+  "private": false,
+  "version": "0.0.1",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tomxuetao/easy-layout.git"
+  },
+  "scripts": {
+    "changeset": "changeset",
+    "prepare": "husky install",
+    "commit": "git add . && git-cz",
+    "version": "changeset version",
+    "preinstall": "npx only-allow pnpm",
+    "dev": "pnpm --dir packages/easy-example dev",
+    "build": "pnpm --dir ./packages/easy-layout build",
+    "lint": "eslint ./packages/**/src --ext .js,.ts,.tsx,.vue,.mjs,.cjs --fix"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "eslint": "^8.46.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.0.4",
+    "nano-staged": "^0.8.0",
+    "@changesets/cli": "^2.26.1",
+    "@changesets/changelog-git": "^0.1.14",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "git-cz": "^4.9.0",
+    "commitizen": "^4.3.0",
+    "eslint-plugin-vue": "^9.16.1",
+    "eslint-config-prettier": "^9.0.0",
+    "@typescript-eslint/parser": "^6.2.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "engines": {
+    "pnpm": ">= 8.8.0"
+  },
+  "packageManager": "pnpm@8.8.0",
+  "nano-staged": {
+    "*.md": "prettier --write",
+    "*.{ts,tsx,js,vue,scss}": "prettier --write",
+    "*.{ts,tsx,js,vue}": "eslint --fix"
+  }
+}

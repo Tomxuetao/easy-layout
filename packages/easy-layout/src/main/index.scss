@@ -1,0 +1,14 @@
+:root {
+  --ev-main-bg-color: var(--ev-white);
+  --ev-main-margin: var(--ev-margin-lg);
+  --ev-main-border-radius: var(--ev-radius-lg);
+  --ev-main-box-shadow: 0 4px 12px 0 rgba(0, 72, 118, 0.04);
+}
+
+.ev-main {
+  grid-area: 3/2/4/3;
+  box-shadow: var(--ev-main-box-shadow);
+  background-color: var(--ev-main-bg-color);
+  border-radius: var(--ev-main-border-radius);
+  margin: 0 var(--ev-main-margin) var(--ev-main-margin) 0;
+}

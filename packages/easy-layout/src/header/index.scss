@@ -1,0 +1,16 @@
+:root {
+  --ev-header-height: 64px;
+  --ev-header-bg-color: transparent;
+  --ev-header-padding: var(--ev-padding-lg);
+}
+
+.ev-header {
+  display: flex;
+  align-items: center;
+  grid-column-end: 3;
+  grid-column-start: 1;
+  padding: 0 var(--ev-padding-lg);
+  height: var(--ev-header-height);
+  line-height: var(--ev-header-height);
+  background-color: var(--ev-header-bg-color);
+}

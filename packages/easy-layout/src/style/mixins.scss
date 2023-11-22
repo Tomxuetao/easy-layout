@@ -1,0 +1,54 @@
+@mixin ellipsis($lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  line-break: anywhere;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+@mixin hairline-common() {
+  position: absolute;
+  box-sizing: border-box;
+  content: ' ';
+  pointer-events: none;
+}
+
+@mixin hairline($color) {
+  @include hairline-common();
+
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  border: 0 solid $color;
+  transform: scale(0.5);
+}
+
+@mixin hairline-top($color, $left: 0, $right: 0) {
+  @include hairline-common();
+
+  top: 0;
+  right: $right;
+  left: $left;
+  border-top: 1px solid $color;
+  transform: scale(0.5);
+}
+
+@mixin hairline-bottom($color, $left: 0, $right: 0) {
+  @include hairline-common();
+
+  right: $right;
+  bottom: 0;
+  left: $left;
+  border-bottom: 1px solid $color;
+  transform: scale(0.5);
+}

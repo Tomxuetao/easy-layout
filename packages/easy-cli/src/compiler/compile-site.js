@@ -1,0 +1,43 @@
+import { createServer, build } from 'vite'
+import {getViteConfigForSiteDev,
+  getViteConfigForSiteProd} from '../config/vite.site.js'
+import { mergeCustomViteConfig } from '../common/index.js'
+import { genPackageEntry } from './gen-package-entry.js'
+import { genStyleDepsMap } from './gen-style-deps-map.js'
+import { PACKAGE_ENTRY_FILE } from '../common/constant.js'
+export function genSiteEntry() {
+  return new Promise((resolve, reject) => {
+    genStyleDepsMap()
+      .then(() => {
+        genPackageEntry({
+          outputPath: PACKAGE_ENTRY_FILE
+        })
+        resolve()
+      })
+      .catch((err) => {
+        console.log(err)
+        reject(err)
+      })
+  })
+}
+export async function compileSite(production = false) {
+  var _a
+  await genSiteEntry()
+  if (production) {
+    const config = await mergeCustomViteConfig(
+      getViteConfigForSiteProd(),
+      'production'
+    )
+    await build(config)
+  } else {
+    const config = await mergeCustomViteConfig(
+      getViteConfigForSiteDev(),
+      'development'
+    )
+    const server = await createServer(config)
+    await server.listen(
+      (_a = config.server) === null || _a === void 0 ? void 0 : _a.port
+    )
+    server.printUrls()
+  }
+}
