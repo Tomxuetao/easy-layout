@@ -97,6 +97,7 @@ const menuItemClick = (data: TreeNode) => {
   <ev-layout
     class="layout-wrap"
     :img-bg="ImgBg"
+    :show-crumb="true"
     :menu-list="menuList"
     :menu-props="menuProps"
     @menu-item-click="(data) => menuItemClick(data)"

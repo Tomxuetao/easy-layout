@@ -1,4 +1,4 @@
-import { type PropType, type SlotsType, defineComponent } from 'vue'
+import { type PropType, type SlotsType, defineComponent, ref } from 'vue'
 import { TreeNode, MenuProps, SubMenuProps, MenuItemProps } from './types'
 
 import { Header } from '../header'
@@ -12,6 +12,11 @@ export default defineComponent({
     imgBg: {
       type: String,
       required: false
+    },
+    showCrumb: {
+      type: Boolean,
+      required: false,
+      default: () => false
     },
     menuList: {
       required: true,
@@ -46,10 +51,12 @@ export default defineComponent({
 
   setup(props, { slots, emit }) {
     const { logo, fold, router, menuIcon } = slots
-    const { imgBg, menuList } = props
+    const { imgBg, menuList, showCrumb } = props
 
+    const activeId = ref(props.menuProps.defaultActive || menuList[0].id || '')
     const menuItemClick = (data: TreeNode) => {
       emit('menuItemClick', data)
+      activeId.value = data.id
     }
 
     return () => {
@@ -64,7 +71,12 @@ export default defineComponent({
             menuItemProps={props.menuItemProps}
             onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
-          <Main v-slots={{ router }}></Main>
+          <Main
+            v-slots={{ router }}
+            menuList={menuList}
+            showCrumb={showCrumb}
+            activeId={activeId.value}
+          ></Main>
         </div>
       )
     }

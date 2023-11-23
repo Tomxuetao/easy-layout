@@ -11,4 +11,16 @@
   background-color: var(--ev-main-bg-color);
   border-radius: var(--ev-main-border-radius);
   margin: 0 var(--ev-main-margin) var(--ev-main-margin) 0;
+
+  .main-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .inner-ctx {
+      flex: 1;
+    }
+  }
 }
