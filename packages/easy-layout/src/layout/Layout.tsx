@@ -71,7 +71,6 @@ export default defineComponent({
     const activeRootId = ref(navMode === 'aside' ? '' : rootNode.id)
 
     const menuItemClick = (data: TreeNode) => {
-      console.log(data)
       emit('update:modelValue', { ...props.modelValue, ...data })
       activeId.value = data.id
     }
