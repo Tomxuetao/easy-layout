@@ -34,7 +34,7 @@ const routes = [
     component: () => import('@/views/layout/index.vue'),
     children: devRoutes,
     beforeEnter: async ({ name }: RouteLocation) =>
-      name !== 'main-dynamic' ? true : { replace: true, name: 'auth-list' }
+      name !== 'main-dynamic' ? true : { replace: true, name: 'apply-detail' }
   }
 ]
 

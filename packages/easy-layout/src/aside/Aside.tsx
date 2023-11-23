@@ -38,7 +38,7 @@ export default defineComponent({
 
   slots: Object as SlotsType<{
     fold: any;
-    menuIcon: any;
+    menuIcon: TreeNode;
   }>,
 
   setup(props, { slots, emit }) {

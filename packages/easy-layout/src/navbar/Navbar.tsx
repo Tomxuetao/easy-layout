@@ -8,7 +8,7 @@ export default defineComponent({
   name: 'EvNavbar',
 
   slots: Object as SlotsType<{
-    menuIcon: any;
+    menuIcon: TreeNode;
   }>,
 
   props: {
@@ -41,7 +41,7 @@ export default defineComponent({
         title: () => {
           return (
             <>
-              {menuIcon?.({ menu })}
+              {menuIcon?.(menu)}
               <span>{menu.text}</span>
             </>
           )
@@ -49,7 +49,7 @@ export default defineComponent({
       }
 
       const menuItemSlots = {
-        default: () => menuIcon?.({ menu }),
+        default: () => menuIcon?.(menu),
         title: () => <span>{menu.text}</span>
       }
 

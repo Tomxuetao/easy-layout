@@ -1,15 +1,13 @@
-import { SlotsType, defineComponent } from 'vue'
+import { type PropType, type SlotsType, defineComponent } from 'vue'
+import { TreeNode, MenuProps, SubMenuProps, MenuItemProps } from './types'
 
 import { Header } from '../header'
 import { Aside } from '../aside'
 import { Main } from '../main'
-import type { PropType } from 'vue'
-import { TreeNode, MenuProps, SubMenuProps, MenuItemProps } from './types'
 
 export default defineComponent({
   name: 'EvLayout',
 
-  inheritAttrs: true,
   props: {
     imgBg: {
       type: String,
@@ -27,10 +25,12 @@ export default defineComponent({
     },
     subMenuProps: {
       required: false,
+      default: () => {},
       type: Object as PropType<SubMenuProps>
     },
     menuItemProps: {
       required: false,
+      default: () => {},
       type: Object as PropType<MenuItemProps>
     }
   },
@@ -41,7 +41,7 @@ export default defineComponent({
     logo: {};
     fold: {};
     router: {};
-    menuIcon: {};
+    menuIcon: TreeNode;
   }>,
 
   setup(props, { slots, emit }) {

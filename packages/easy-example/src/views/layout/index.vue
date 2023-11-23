@@ -18,20 +18,20 @@ const menuList: TreeNode[] = [
   {
     id: '2',
     text: '菜单2',
-    icon: '1',
+    icon: '2',
     url: '2',
     children: [
       {
         id: '2-1',
         text: '菜单3',
-        icon: '1',
+        icon: '2',
         url: '/apply-detail',
         children: []
       },
       {
         id: '2-2',
         text: '菜单4',
-        icon: '1',
+        icon: '2',
         url: '/apply-detail',
         children: []
       },
@@ -47,27 +47,27 @@ const menuList: TreeNode[] = [
   {
     id: '3',
     text: '菜单6',
-    icon: '1',
+    icon: '3',
     url: '2',
     children: [
       {
         id: '3-1',
         text: '菜单7',
-        icon: '1',
+        icon: '3',
         url: '/auth-list',
         children: []
       },
       {
         id: '3-2',
         text: '菜单8',
-        icon: '1',
+        icon: '4',
         url: '/auth-list',
         children: []
       },
       {
         id: '3-3',
         text: '菜单9',
-        icon: '1',
+        icon: '4',
         url: '/auth-list',
         children: []
       }
@@ -79,7 +79,7 @@ const collapse = ref(false)
 const menuProps: MenuProps = reactive({
   collapse: collapse,
   uniqueOpened: true,
-  defaultActive: '2-1'
+  defaultActive: '2-3'
 }) as MenuProps
 
 const toggleCollapse = () => {
@@ -128,9 +128,9 @@ const menuItemClick = (data: TreeNode) => {
     <template #router>
       <router-view />
     </template>
-    <template #menuIcon>
+    <template #menuIcon="menu">
       <svg-icon
-        name="1"
+        :name="menu.icon"
         class="menu-svg"
       />
     </template>
