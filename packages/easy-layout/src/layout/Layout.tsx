@@ -1,9 +1,15 @@
-import { type PropType, type SlotsType, defineComponent, ref } from 'vue'
-import { TreeNode, MenuProps, SubMenuProps, MenuItemProps } from './types'
+import { TreeNode } from './types'
+import {type PropType,
+  type SlotsType,
+  defineComponent,
+  ref,
+  provide,
+  watch} from 'vue'
 
-import { Header } from '../header'
-import { Aside } from '../aside'
 import { Main } from '../main'
+import { Aside } from '../aside'
+import { Header } from '../header'
+import { clapTree, computedRootNode } from '../utils'
 
 export default defineComponent({
   name: 'EvLayout',
@@ -12,6 +18,12 @@ export default defineComponent({
     imgBg: {
       type: String,
       required: false
+    },
+    navMode: {
+      type: String,
+      required: false,
+      default: () => 'aside',
+      validator: (value: string) => ['aside', 'header'].includes(value)
     },
     showCrumb: {
       type: Boolean,
@@ -23,24 +35,18 @@ export default defineComponent({
       default: () => [],
       type: Array as PropType<TreeNode[]>
     },
-    menuProps: {
+    collapse: {
+      type: Boolean,
       required: false,
-      default: () => {},
-      type: Object as PropType<MenuProps>
+      default: () => false
     },
-    subMenuProps: {
-      required: false,
-      default: () => {},
-      type: Object as PropType<SubMenuProps>
-    },
-    menuItemProps: {
-      required: false,
-      default: () => {},
-      type: Object as PropType<MenuItemProps>
+    modelValue: {
+      required: true,
+      type: Object as PropType<TreeNode>
     }
   },
 
-  emits: ['menuItemClick'],
+  emits: ['update:modelValue'],
 
   slots: Object as SlotsType<{
     logo: {};
@@ -51,24 +57,44 @@ export default defineComponent({
 
   setup(props, { slots, emit }) {
     const { logo, fold, router, menuIcon } = slots
-    const { imgBg, menuList, showCrumb } = props
+    const { imgBg, navMode, menuList, showCrumb } = props
 
-    const activeId = ref(props.menuProps.defaultActive || menuList[0].id || '')
+    const menuMap = clapTree(menuList)
+    provide('menuMap', menuMap)
+
+    const activeId = ref(menuList[0].id || '')
+
+    const rootNode = computedRootNode(activeId.value, menuMap)!
+
+    const tempList = ref(navMode === 'aside' ? menuList : rootNode.children)
+
+    const activeRootId = ref(navMode === 'aside' ? '' : rootNode.id)
+
     const menuItemClick = (data: TreeNode) => {
-      emit('menuItemClick', data)
+      console.log(data)
+      emit('update:modelValue', { ...props.modelValue, ...data })
       activeId.value = data.id
     }
+
+    watch(
+      () => activeRootId.value,
+      () => {
+        tempList.value = menuMap.get(activeRootId.value)!.children
+      }
+    )
 
     return () => {
       return (
         <div class="ev-layout" style={`background-image: url(${imgBg})`}>
-          <Header v-slots={{ logo }}></Header>
+          <Header
+            v-slots={{ logo }}
+            navMode={navMode}
+            menuList={menuList}
+            v-model={activeRootId.value}
+          ></Header>
           <Aside
             v-slots={{ fold, menuIcon }}
-            menuList={menuList}
-            menuProps={props.menuProps}
-            subMenuProps={props.subMenuProps}
-            menuItemProps={props.menuItemProps}
+            menuList={tempList.value}
             onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
           <Main

@@ -1,4 +1,5 @@
 import {defineComponent,
+  inject,
   type PropType,
   type Ref,
   ref,
@@ -25,7 +26,8 @@ export default defineComponent({
 
   setup(props) {
     const { menuList, activeId } = toRefs(props)
-    const menuMap = clapTree(menuList.value)
+    const menuMap: Map<string, TreeNode> =
+      inject('menuMap') || clapTree(menuList.value)
 
     const generateCrumb = (activeData: TreeNode) => {
       const breadcrumbs: TreeNode[] = [activeData]
@@ -48,7 +50,6 @@ export default defineComponent({
       () => activeId.value,
       () => {
         crumbList.value = generateCrumb(menuMap.get(activeId.value)!)
-        console.log(crumbList.value)
       },
       {
         immediate: true

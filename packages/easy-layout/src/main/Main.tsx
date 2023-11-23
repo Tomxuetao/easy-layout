@@ -1,7 +1,6 @@
-import { defineComponent, PropType, SlotsType, toRefs } from 'vue'
-
 import { Crumb } from '../crumb'
-import { TreeNode } from 'packages/easy-layout/src/layout/types'
+import { TreeNode } from '../layout/types'
+import { defineComponent, PropType, SlotsType, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'EvMain',
@@ -35,7 +34,7 @@ export default defineComponent({
       return (
         <main class="ev-main">
           <div class="main-inner">
-            {showCrumb.value ? (
+            {showCrumb.value && menuList.value.length ? (
               <Crumb
                 menuList={menuList.value}
                 activeId={activeId.value}

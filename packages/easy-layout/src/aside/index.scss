@@ -10,6 +10,7 @@
 }
 
 .ev-aside {
+  min-width: var(--ev-main-margin);
   display: flex;
   grid-row-end: 4;
   grid-row-start: 2;

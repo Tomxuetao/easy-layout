@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { RouteRecordRaw, useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+import { useRouter, RouteRecordRaw } from 'vue-router'
 import ImgBg from '@/assets/img/img-bg.webp'
 import SvgIcon from '@/components/svg-icon.vue'
 
 import { Layout as EvLayout } from 'easy-layout'
-import type { TreeNode, MenuProps } from 'easy-layout/es/layout/types'
+import type { TreeNode } from 'easy-layout/es/layout/types'
 
 const menuList: TreeNode[] = [
   {
@@ -76,31 +76,34 @@ const menuList: TreeNode[] = [
 ]
 
 const collapse = ref(false)
-const menuProps: MenuProps = reactive({
-  collapse: collapse,
-  uniqueOpened: true,
-  defaultActive: '2-3'
-}) as MenuProps
 
 const toggleCollapse = () => {
   collapse.value = !collapse.value
 }
 
 const router = useRouter()
-const menuItemClick = (data: TreeNode) => {
-  console.log(data)
-  router.push({ path: data.url } as RouteRecordRaw)
-}
+
+const activeData = ref(menuList[0])
+
+watch(
+  () => activeData.value,
+  (data) => {
+    router.push({
+      path: data.url
+    } as RouteRecordRaw)
+  }
+)
 </script>
 
 <template>
   <ev-layout
+    v-model="activeData"
     class="layout-wrap"
     :img-bg="ImgBg"
+    :nav-mode="'header'"
     :show-crumb="true"
+    :collapse="collapse"
     :menu-list="menuList"
-    :menu-props="menuProps"
-    @menu-item-click="(data) => menuItemClick(data)"
   >
     <template #logo>
       <div class="logo-wrap">

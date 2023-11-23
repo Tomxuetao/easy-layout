@@ -17,3 +17,22 @@ export const clapTree = (menuList: TreeNode[]) => {
 
   return menuMap
 }
+
+export const computedRootNode = (
+  curId: string,
+  menuMap: Map<string, TreeNode>
+) => {
+  let topLevelId = ''
+  const recursion = (id: string) => {
+    const { pid } = menuMap.get(id)!
+    if (pid) {
+      const { id } = menuMap.get(pid)!
+      recursion(id)
+    } else {
+      topLevelId = id
+    }
+  }
+  recursion(curId)
+
+  return menuMap.get(topLevelId)
+}

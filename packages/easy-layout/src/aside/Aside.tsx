@@ -1,9 +1,6 @@
 import type { PropType } from 'vue'
-import { defineComponent } from 'vue'
-import {TreeNode,
-  MenuProps,
-  SubMenuProps,
-  MenuItemProps} from '../layout/types'
+import { defineComponent, toRefs } from 'vue'
+import { TreeNode } from '../layout/types'
 
 import { ElMenu, ElScrollbar } from 'element-plus'
 
@@ -16,17 +13,10 @@ const asideProps = {
     default: () => [],
     type: Array as PropType<TreeNode[]>
   },
-  menuProps: {
+  collapse: {
+    type: Boolean,
     required: false,
-    type: Object as PropType<MenuProps>
-  },
-  subMenuProps: {
-    required: false,
-    type: Object as PropType<SubMenuProps>
-  },
-  menuItemProps: {
-    required: false,
-    type: Object as PropType<MenuItemProps>
+    default: () => false
   }
 }
 
@@ -42,28 +32,26 @@ export default defineComponent({
   }>,
 
   setup(props, { slots, emit }) {
-    const { menuList } = props
     const { fold, menuIcon } = slots
+    const { menuList, collapse } = toRefs(props)
 
     const menuItemClick = (data: TreeNode) => {
       emit('menuItemClick', data)
     }
 
     return () => {
-      if (!menuList.length) {
+      if (!menuList.value.length) {
         return <aside class="ev-aside"></aside>
       }
       return (
         <aside class="ev-aside">
           <ElScrollbar>
-            <ElMenu {...props.menuProps}>
-              {menuList.map((item) => (
+            <ElMenu collapse={collapse.value}>
+              {menuList.value.map((item) => (
                 <Navbar
                   v-slots={{ menuIcon }}
                   menu={item}
                   key={item.id}
-                  subMenuProps={props.subMenuProps}
-                  menuItemProps={props.menuItemProps}
                   onMenuItemClick={(data) => menuItemClick(data)}
                 ></Navbar>
               ))}
