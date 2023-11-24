@@ -15,6 +15,7 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "pnpm --dir packages/easy-example dev",
     "build": "pnpm --dir ./packages/easy-layout build",
+    "build:example": "pnpm --dir packages/easy-example build",
     "lint": "eslint ./packages/**/src --ext .js,.ts,.tsx,.vue,.mjs,.cjs --fix"
   },
   "devDependencies": {

@@ -100,7 +100,6 @@ watch(
     v-model="activeData"
     class="layout-wrap"
     :img-bg="ImgBg"
-    :nav-mode="'header'"
     :show-crumb="true"
     :collapse="collapse"
     :menu-list="menuList"
