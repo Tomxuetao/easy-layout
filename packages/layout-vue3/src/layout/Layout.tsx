@@ -94,6 +94,7 @@ export default defineComponent({
           <Aside
             v-slots={{ fold, menuIcon }}
             menuList={tempList.value}
+            collapse={props.collapse}
             onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
           <Main
