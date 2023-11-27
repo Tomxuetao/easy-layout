@@ -1,5 +1,5 @@
 {
-  "name": "@easy/cli",
+  "name": "layout-cli",
   "version": "0.0.1",
   "type": "module",
   "main": "lib/index.js",

@@ -12,8 +12,7 @@
     "vue-router": "^4.2.5",
     "element-plus": "^2.4.2",
     "normalize.css": "^8.0.1",
-    "easy-layout": "workspace: *",
-    "vite-plugin-svg-icons": "^2.0.1"
+    "layout-vue3": "workspace: *"
   },
   "devDependencies": {
     "vite": "^4.4.5",

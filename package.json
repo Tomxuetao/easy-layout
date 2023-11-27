@@ -1,8 +1,5 @@
 {
-  "name": "easy-layout",
   "private": false,
-  "version": "0.0.1",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/Tomxuetao/easy-layout.git"
@@ -13,9 +10,9 @@
     "commit": "git add . && git-cz",
     "version": "changeset version",
     "preinstall": "npx only-allow pnpm",
-    "dev": "pnpm --dir packages/easy-example dev",
-    "build": "pnpm --dir ./packages/easy-layout build",
-    "build:example": "pnpm --dir packages/easy-example build",
+    "dev": "pnpm --dir packages/layout-example dev",
+    "build": "pnpm --dir packages/layout-vue3 build",
+    "build:example": "pnpm --dir packages/layout-example build",
     "lint": "eslint ./packages/**/src --ext .js,.ts,.tsx,.vue,.mjs,.cjs --fix"
   },
   "devDependencies": {

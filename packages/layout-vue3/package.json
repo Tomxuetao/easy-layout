@@ -1,5 +1,5 @@
 {
-  "name": "easy-layout",
+  "name": "layout-vue3",
   "private": false,
   "version": "0.0.1",
   "files": [
@@ -7,17 +7,17 @@
     "lib"
   ],
   "license": "ISC",
-  "main": "lib/easy-layout.cjs.js",
   "module": "es/index.mjs",
   "style": "lib/index.css",
   "typings": "lib/index.d.ts",
-  "unpkg": "lib/easy-layout.min.js",
-  "jsdelivr": "lib/easy-layout.min.js",
+  "main": "lib/layout-vue3.cjs.js",
+  "unpkg": "lib/layout-vue3.min.js",
+  "jsdelivr": "lib/layout-vue3.min.js",
   "scripts": {
     "build": "easy-cli build"
   },
   "devDependencies": {
-    "@easy/cli": "workspace:*",
+    "layout-cli": "workspace:*",
     "vue": "^3.3.8",
     "vite": "^4.5.0",
     "sass": "^1.69.5",
