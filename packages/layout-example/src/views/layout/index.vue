@@ -4,7 +4,7 @@ import { useRouter, RouteRecordRaw } from 'vue-router'
 import ImgBg from '@/assets/img/img-bg.webp'
 import SvgIcon from '@/components/svg-icon.vue'
 
-import { Layout as EvLayout } from '@easy/layout'
+import { Layout as EvLayout } from 'layout-vue3'
 
 const menuList = [
   {
