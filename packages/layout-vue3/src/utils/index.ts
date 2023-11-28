@@ -1,21 +1,27 @@
 import { type TreeNode } from '../layout/types'
 
-export const clapTree = (menuList: TreeNode[]) => {
-  const menuMap: Map<string, TreeNode> = new Map()
+export const clapTree = (
+  menuList: TreeNode[],
+  mapKey: keyof TreeNode = 'id'
+) => {
+  const resMap: Map<any, TreeNode> = new Map()
 
   const recursion = (menuList: TreeNode[], parent: TreeNode | undefined) => {
     for (const node of menuList) {
-      menuMap.set(
-        node.id,
-        Object.assign(node, { pid: parent ? parent.id : undefined })
-      )
+      const tempKey = node[mapKey]
+      if (tempKey) {
+        resMap.set(
+          tempKey,
+          Object.assign(node, { pid: parent ? parent.id : undefined })
+        )
+      }
       recursion(node.children, node)
     }
   }
 
   recursion(menuList, undefined)
 
-  return menuMap
+  return resMap
 }
 
 export const computedRootNode = (

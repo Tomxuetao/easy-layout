@@ -62,7 +62,7 @@ export default defineComponent({
     const menuMap = clapTree(menuList)
     provide('menuMap', menuMap)
 
-    const activeId = ref(menuList[0].id || '')
+    const activeId = ref(props.modelValue.id || '')
 
     const rootNode = computedRootNode(activeId.value, menuMap)!
 
@@ -93,6 +93,7 @@ export default defineComponent({
           ></Header>
           <Aside
             v-slots={{ fold, menuIcon }}
+            activeId={activeId.value}
             menuList={tempList.value}
             collapse={props.collapse}
             onMenuItemClick={(data) => menuItemClick(data)}

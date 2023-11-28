@@ -1,6 +1,7 @@
 :root {
   --ev-main-bg-color: var(--ev-white);
   --ev-main-margin: var(--ev-margin-lg);
+  --ev-main-ctx-margin: var(--ev-margin-lg);
   --ev-main-border-radius: var(--ev-radius-lg);
   --ev-main-box-shadow: 0 4px 12px 0 rgba(0, 72, 118, 0.04);
 }
@@ -21,6 +22,7 @@
 
     .inner-ctx {
       flex: 1;
+      margin: var(--ev-main-ctx-margin);
     }
   }
 }

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useRouter, RouteRecordRaw } from 'vue-router'
+import { useRouter, RouteRecordRaw, useRoute } from 'vue-router'
 import ImgBg from '@/assets/img/img-bg.webp'
 import SvgIcon from '@/components/svg-icon.vue'
 
+import { clapTree } from 'layout-vue3/es/utils'
 import { Layout as EvLayout } from 'layout-vue3'
 
 const menuList = [
@@ -12,19 +13,22 @@ const menuList = [
     text: '菜单1',
     icon: '1',
     url: '/apply-detail',
+    isMenu: true,
     children: []
   },
   {
     id: '2',
     text: '菜单2',
     icon: '2',
-    url: '2',
+    url: '',
+    isMenu: true,
     children: [
       {
         id: '2-1',
         text: '菜单3',
         icon: '2',
         url: '/apply-detail',
+        isMenu: true,
         children: []
       },
       {
@@ -32,6 +36,7 @@ const menuList = [
         text: '菜单4',
         icon: '2',
         url: '/apply-detail',
+        isMenu: true,
         children: []
       },
       {
@@ -39,6 +44,7 @@ const menuList = [
         text: '菜单5',
         icon: '1',
         url: '/auth-list',
+        isMenu: true,
         children: []
       }
     ]
@@ -47,13 +53,15 @@ const menuList = [
     id: '3',
     text: '菜单6',
     icon: '3',
-    url: '2',
+    url: '',
+    isMenu: true,
     children: [
       {
         id: '3-1',
         text: '菜单7',
         icon: '3',
         url: '/auth-list',
+        isMenu: true,
         children: []
       },
       {
@@ -61,6 +69,7 @@ const menuList = [
         text: '菜单8',
         icon: '4',
         url: '/auth-list',
+        isMenu: true,
         children: []
       },
       {
@@ -68,11 +77,14 @@ const menuList = [
         text: '菜单9',
         icon: '4',
         url: '/auth-list',
+        isMenu: true,
         children: []
       }
     ]
   }
 ]
+
+const pathMap = clapTree(menuList, 'url')
 
 const collapse = ref(false)
 
@@ -80,9 +92,14 @@ const toggleCollapse = () => {
   collapse.value = !collapse.value
 }
 
+const route = useRoute()
 const router = useRouter()
 
-const activeData = ref(menuList[0])
+console.log(route)
+
+console.log(pathMap.get(route.path))
+
+const activeData = ref(pathMap.get(route.path))
 
 watch(
   () => activeData.value,
