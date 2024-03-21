@@ -45,7 +45,7 @@ export default defineComponent({
         title: () => <span>{menu.text}</span>
       }
 
-      if (menu.children?.length) {
+      if (menu.children.filter((item) => item.isMenu)?.length) {
         return (
           <ElSubMenu index={menu.id} v-slots={subMenuSlots}>
             {menu.children.map((item) => (
