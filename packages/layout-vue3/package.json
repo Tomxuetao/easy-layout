@@ -1,7 +1,7 @@
 {
   "name": "layout-vue3",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "files": [
     "es",
     "lib"
@@ -18,21 +18,21 @@
   },
   "devDependencies": {
     "layout-cli": "workspace:*",
-    "vue": "^3.3.8",
-    "vite": "^4.5.0",
-    "sass": "^1.69.5",
-    "vue-tsc": "^1.8.22",
-    "typescript": "^5.2.2",
-    "element-plus": "^2.4.2",
-    "@types/node": "^20.9.0",
-    "vite-plugin-dts": "^3.6.3",
-    "@vitejs/plugin-vue": "^4.4.1",
-    "unplugin-auto-import": "^0.16.7",
-    "@vitejs/plugin-vue-jsx": "^3.1.0",
-    "unplugin-vue-components": "^0.25.2"
+    "vue": "^3.5.12",
+    "vite": "^5.4.11",
+    "sass": "^1.80.6",
+    "vue-tsc": "^2.1.10",
+    "typescript": "^5.6.3",
+    "element-plus": "^2.8.7",
+    "@types/node": "^22.9.0",
+    "vite-plugin-dts": "^4.3.0",
+    "@vitejs/plugin-vue": "^5.1.5",
+    "unplugin-auto-import": "^0.18.3",
+    "@vitejs/plugin-vue-jsx": "^4.1.0",
+    "unplugin-vue-components": "^0.27.4"
   },
   "peerDependencies": {
-    "vue": "^3.3.4",
-    "element-plus": "^2.4.2"
+    "vue": "^3.5.12",
+    "element-plus": "^2.8.7"
   }
 }

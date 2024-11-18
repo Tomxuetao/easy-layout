@@ -40,7 +40,7 @@ export default defineComponent({
     const { menuList, collapse, activeId } = toRefs(props)
 
     const menuItemClick = (data: TreeNode) => {
-      emit('menuItemClick', data)
+      emit('menuItemClick', data as TreeNode)
     }
 
     return () => {

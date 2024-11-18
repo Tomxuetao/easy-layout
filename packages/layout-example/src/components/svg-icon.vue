@@ -1,44 +1,22 @@
 <template>
-  <svg
-    :class="getClassName"
-    :width="width"
-    :height="height"
-    aria-hidden="true"
-  >
-    <use :xlink:href="getName" />
-  </svg>
+  <component :is="loadSvgIcon(svgName)"></component>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const props = defineProps({
-  name: {
-    type: String,
-    required: true
-  },
-  className: {
-    type: String
-  },
-  width: {
-    type: String
-  },
-  height: {
-    type: String
-  }
+const svgName = defineModel({
+  type: String,
+  default: ''
 })
 
-const getName = computed(() => {
-  return `#icon-${props.name}`
+const svgRecords = import.meta.glob(['../assets/icons/svg/*'], {
+  eager: true,
+  import: 'default',
+  query: '?component'
 })
 
-const getClassName = computed(() => {
-  return [
-    'icon-svg',
-    `icon-svg__${props.name}`,
-    props.className && /\S/.test(props.className) ? `${props.className}` : ''
-  ]
-})
+const loadSvgIcon = (name: string) =>
+  svgRecords[`../assets/icons/svg/icon-${name}.svg`] ||
+  svgRecords['../assets/icons/svg/icon-0.svg']
 </script>
 
 <style>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useRouter, RouteRecordRaw, useRoute } from 'vue-router'
+
 import ImgBg from '@/assets/img/img-bg.webp'
 import SvgIcon from '@/components/svg-icon.vue'
+import { useRouter, RouteRecordRaw, useRoute } from 'vue-router'
 
 import { clapTree } from 'layout-vue3/es/utils'
 import { Layout as EvLayout } from 'layout-vue3'
+import type { TreeNode } from 'layout-vue3/es/layout/types'
 
 const menuList = [
   {
@@ -35,7 +37,7 @@ const menuList = [
         id: '2-2',
         text: '菜单4',
         icon: '2',
-        url: '/apply-detail',
+        url: '/apply-detail2',
         isMenu: true,
         children: []
       },
@@ -95,11 +97,7 @@ const toggleCollapse = () => {
 const route = useRoute()
 const router = useRouter()
 
-console.log(route)
-
-console.log(pathMap.get(route.path))
-
-const activeData = ref(pathMap.get(route.path))
+const activeData = ref(pathMap.get(route.path) as TreeNode)
 
 watch(
   () => activeData.value,
@@ -116,42 +114,31 @@ watch(
     v-model="activeData"
     class="layout-wrap"
     :img-bg="ImgBg"
+    nav-mode="header"
     :show-crumb="true"
     :collapse="collapse"
     :menu-list="menuList"
   >
     <template #logo>
       <div class="logo-wrap">
-        <img
-          class="logo-img"
-          src="@/assets/img/img-logo.webp"
-          alt=""
-        >
-        <div class="logo-text">
-          数字管理子平台
-        </div>
+        <img class="logo-img" src="@/assets/img/img-logo.webp" alt="" />
+        <div class="logo-text">数字管理子平台</div>
       </div>
     </template>
     <template #fold>
-      <div
-        class="fold-wrap"
-        @click="toggleCollapse()"
-      >
+      <div class="fold-wrap" @click="toggleCollapse()">
         <img
           :class="['fold-img', collapse ? 'img-fold' : 'img-open']"
           src="@/assets/img/img-fold.webp"
           alt=""
-        >
+        />
       </div>
     </template>
     <template #router>
       <router-view />
     </template>
     <template #menuIcon="menu">
-      <svg-icon
-        :name="menu.icon"
-        class="menu-svg"
-      />
+      <svg-icon v-model="menu.icon" class="menu-svg" />
     </template>
   </ev-layout>
 </template>

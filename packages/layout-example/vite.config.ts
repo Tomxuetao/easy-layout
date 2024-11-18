@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'node:path'
-import { BuilderSvg } from './src/utils/builder-svg'
+import svgLoader from 'vite-svg-loader'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
-  plugins: [vue(), BuilderSvg('./src/assets/icons/svg/')],
+  plugins: [
+    vue(),
+    svgLoader(),
+    visualizer({
+      open: true,
+      gzipSize: true
+    })
+  ],
   resolve: {
     alias: [
       {
