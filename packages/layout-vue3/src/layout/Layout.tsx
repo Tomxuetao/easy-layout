@@ -40,6 +40,11 @@ export default defineComponent({
       required: false,
       default: () => false
     },
+    uniqueOpened: {
+      type: Boolean,
+      required: false,
+      default: () => true
+    },
     modelValue: {
       required: true,
       type: Object as PropType<TreeNode>
@@ -96,6 +101,7 @@ export default defineComponent({
             activeId={activeId.value}
             menuList={tempList.value}
             collapse={props.collapse}
+            uniqueOpened={props.uniqueOpened}
             onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
           <Main

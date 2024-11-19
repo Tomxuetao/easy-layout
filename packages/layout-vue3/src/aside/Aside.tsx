@@ -21,6 +21,11 @@ const asideProps = {
   activeId: {
     required: true,
     type: String
+  },
+  uniqueOpened: {
+    type: Boolean,
+    required: false,
+    default: () => true
   }
 }
 
@@ -37,7 +42,7 @@ export default defineComponent({
 
   setup(props, { slots, emit }) {
     const { fold, menuIcon } = slots
-    const { menuList, collapse, activeId } = toRefs(props)
+    const { menuList, collapse, activeId, uniqueOpened } = toRefs(props)
 
     const menuItemClick = (data: TreeNode) => {
       emit('menuItemClick', data as TreeNode)
@@ -50,7 +55,11 @@ export default defineComponent({
       return (
         <aside class="ev-aside">
           <ElScrollbar>
-            <ElMenu collapse={collapse.value} default-active={activeId.value}>
+            <ElMenu
+              collapse={collapse.value}
+              default-active={activeId.value}
+              unique-opened={uniqueOpened}
+            >
               {menuList.value.map((item) => (
                 <Navbar
                   v-slots={{ menuIcon }}
