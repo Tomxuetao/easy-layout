@@ -58,7 +58,7 @@ export default defineComponent({
             <ElMenu
               collapse={collapse.value}
               default-active={activeId.value}
-              unique-opened={uniqueOpened}
+              unique-opened={uniqueOpened.value}
             >
               {menuList.value.map((item) => (
                 <Navbar
