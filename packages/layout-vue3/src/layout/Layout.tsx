@@ -81,6 +81,13 @@ export default defineComponent({
     }
 
     watch(
+      () => props.modelValue,
+      () => {
+        activeId.value = props.modelValue
+      }
+    )
+
+    watch(
       () => activeRootId.value,
       () => {
         tempList.value = menuMap.get(activeRootId.value)!.children
