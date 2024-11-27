@@ -47,7 +47,7 @@ export default defineComponent({
     },
     modelValue: {
       required: true,
-      type: Object as PropType<TreeNode>
+      type: String || Number || Symbol
     }
   },
 
@@ -67,7 +67,7 @@ export default defineComponent({
     const menuMap = clapTree(menuList)
     provide('menuMap', menuMap)
 
-    const activeId = ref(props.modelValue.id || '')
+    const activeId = ref(props.modelValue || '')
 
     const rootNode = computedRootNode(activeId.value, menuMap)!
 
@@ -76,7 +76,7 @@ export default defineComponent({
     const activeRootId = ref(navMode === 'aside' ? '' : rootNode.id)
 
     const menuItemClick = (data: TreeNode) => {
-      emit('update:modelValue', { ...props.modelValue, ...data })
+      emit('update:modelValue', data.id)
       activeId.value = data.id
     }
 
