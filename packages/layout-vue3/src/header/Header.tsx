@@ -33,14 +33,14 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const { logo, avatar } = slots
 
-    const { navMode, menuList } = props
+    const { menuList } = props
 
     const changeMenu = (id: string) => {
       emit('update:modelValue', id)
     }
 
     const renderHeaderCenter = () =>
-      navMode === 'header' ? (
+      props.navMode === 'header' ? (
         <div class="header-center">
           {menuList.map((item) => (
             <div

@@ -63,7 +63,7 @@ export default defineComponent({
 
   setup(props, { slots, emit }) {
     const { logo, fold, router, avatar, menuIcon } = slots
-    const { imgBg, navMode, menuList, showCrumb } = props
+    const { imgBg, menuList, showCrumb } = props
 
     const menuMap = clapTree(menuList)
     provide('menuMap', menuMap)
@@ -72,9 +72,11 @@ export default defineComponent({
 
     const rootNode = computedRootNode(activeId.value, menuMap)!
 
-    const tempList = ref(navMode === 'aside' ? menuList : rootNode.children)
+    const tempList = ref(
+      props.navMode === 'aside' ? menuList : rootNode.children
+    )
 
-    const activeRootId = ref(navMode === 'aside' ? '' : rootNode.id)
+    const activeRootId = ref(props.navMode === 'aside' ? '' : rootNode.id)
 
     const menuItemClick = (data: TreeNode) => {
       emit('update:modelValue', data.id)
@@ -99,7 +101,7 @@ export default defineComponent({
       return (
         <div class="ev-layout" style={`background-image: url(${imgBg})`}>
           <Header
-            navMode={navMode}
+            navMode={props.navMode}
             menuList={menuList}
             v-slots={{ logo, avatar }}
             v-model={activeRootId.value}

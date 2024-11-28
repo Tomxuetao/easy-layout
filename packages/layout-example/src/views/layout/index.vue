@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 import ImgBg from '@/assets/img/img-bg.webp'
 import SvgIcon from '@/components/svg-icon.vue'
-import { useRouter, RouteRecordRaw, useRoute } from 'vue-router'
 
-import { clapTree } from 'layout-vue3/es/utils'
 import { Layout as EvLayout } from 'layout-vue3'
-import type { TreeNode } from 'layout-vue3/es/layout/types'
 
 const menuList = [
   {
@@ -86,38 +83,29 @@ const menuList = [
   }
 ]
 
-const pathMap = clapTree(menuList, 'url')
-
 const collapse = ref(false)
 
 const toggleCollapse = () => {
   collapse.value = !collapse.value
 }
 
-const route = useRoute()
-const router = useRouter()
+const navMode = ref('header')
 
-const activeData = ref(pathMap.get(route.path) as TreeNode)
-
-watch(
-  () => activeData.value,
-  (data) => {
-    router.push({
-      path: data.url
-    } as RouteRecordRaw)
-  }
-)
+setTimeout(() => {
+  navMode.value = 'aside'
+}, 10000)
+const activeId = ref('1')
 </script>
 
 <template>
   <ev-layout
-    v-model="activeData"
     class="layout-wrap"
     :img-bg="ImgBg"
-    nav-mode="header"
     :show-crumb="true"
+    :nav-mode="navMode"
     :collapse="collapse"
     :menu-list="menuList"
+    :model-value="activeId"
   >
     <template #logo>
       <div class="logo-wrap">
