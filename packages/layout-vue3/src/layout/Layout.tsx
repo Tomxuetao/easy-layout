@@ -72,11 +72,9 @@ export default defineComponent({
 
     const rootNode = computedRootNode(activeId.value, menuMap)!
 
-    const tempList = ref(
+    const asideMenuList = ref(
       props.navMode === 'aside' ? menuList : rootNode.children
     )
-
-    const activeRootId = ref(props.navMode === 'aside' ? '' : rootNode.id)
 
     const menuItemClick = (data: TreeNode) => {
       emit('update:modelValue', data.id)
@@ -90,33 +88,27 @@ export default defineComponent({
       }
     )
 
-    watch(
-      () => activeRootId.value,
-      () => {
-        tempList.value = menuMap.get(activeRootId.value)!.children
-      }
-    )
-
     return () => {
       return (
         <div class="ev-layout" style={`background-image: url(${imgBg})`}>
           <Header
-            navMode={props.navMode}
             menuList={menuList}
+            navMode={props.navMode}
+            activeId={activeId.value}
             v-slots={{ logo, avatar }}
-            v-model={activeRootId.value}
+            onMenuChange={(menuList) => (asideMenuList.value = menuList)}
           ></Header>
           <Aside
-            v-slots={{ fold, menuIcon }}
             activeId={activeId.value}
-            menuList={tempList.value}
             collapse={props.collapse}
+            v-slots={{ fold, menuIcon }}
+            menuList={asideMenuList.value}
             uniqueOpened={props.uniqueOpened}
             onMenuItemClick={(data) => menuItemClick(data)}
           ></Aside>
           <Main
-            v-slots={{ router }}
             menuList={menuList}
+            v-slots={{ router }}
             showCrumb={showCrumb}
             activeId={activeId.value}
           ></Main>

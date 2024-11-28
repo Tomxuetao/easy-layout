@@ -3,6 +3,7 @@ export type TreeNode = {
   pid?: string;
   text: string;
   icon: string;
-  url: string | null;
+  url?: string;
+  isMenu: boolean;
   children: TreeNode[];
 };

@@ -1,5 +1,6 @@
-import { SlotsType, PropType, defineComponent } from 'vue'
+import { SlotsType, PropType, defineComponent, inject, ref, watch } from 'vue'
 import { TreeNode } from '../layout/types'
+import { clapTree, computedRootNode } from '../utils'
 
 export default defineComponent({
   name: 'EvHeader',
@@ -10,6 +11,10 @@ export default defineComponent({
   }>,
 
   props: {
+    activeId: {
+      required: true,
+      type: String
+    },
     menuList: {
       required: false,
       default: () => [],
@@ -20,23 +25,28 @@ export default defineComponent({
       required: false,
       default: () => 'aside',
       validator: (value: string) => ['aside', 'header'].includes(value)
-    },
-    modelValue: {
-      type: String,
-      required: false,
-      default: () => ''
     }
   },
 
-  emits: ['update:modelValue'],
+  emits: ['menuChange'],
 
   setup(props, { slots, emit }) {
     const { logo, avatar } = slots
 
-    const { menuList } = props
+    const { activeId, menuList } = props
 
-    const changeMenu = (id: string) => {
-      emit('update:modelValue', id)
+    const menuMap: Map<string, TreeNode> =
+      inject('menuMap') || clapTree(menuList)
+
+    const rootNode = computedRootNode(activeId, menuMap)!
+
+    const activeRootId = ref(props.navMode === 'aside' ? '' : rootNode.id)
+
+    const changeMenu = (menu: TreeNode) => {
+      if (menu.id !== activeRootId.value) {
+        activeRootId.value = menu.id
+        emit('menuChange', menu.children)
+      }
     }
 
     const renderHeaderCenter = () =>
@@ -44,9 +54,9 @@ export default defineComponent({
         <div class="header-center">
           {menuList.map((item) => (
             <div
-              onClick={() => changeMenu(item.id)}
+              onClick={() => changeMenu(item)}
               class={
-                item.id === props.modelValue
+                item.id === activeRootId.value
                   ? 'center-item item-active'
                   : 'center-item'
               }
@@ -58,6 +68,16 @@ export default defineComponent({
       ) : (
         <div class="header-center"></div>
       )
+
+    watch(
+      () => props.navMode,
+      (value) => {
+        if (value === 'aside') {
+          activeRootId.value = ''
+          emit('menuChange', menuList)
+        }
+      }
+    )
 
     return () => {
       return (
