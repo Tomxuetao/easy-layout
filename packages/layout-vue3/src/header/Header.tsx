@@ -33,12 +33,12 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const { logo, avatar } = slots
 
-    const { activeId, menuList } = props
+    const { menuList } = props
 
     const menuMap: Map<string, TreeNode> =
       inject('menuMap') || clapTree(menuList)
 
-    const rootNode = computedRootNode(activeId, menuMap)!
+    const rootNode = computedRootNode(props.activeId, menuMap)!
 
     const activeRootId = ref(props.navMode === 'aside' ? '' : rootNode.id)
 
@@ -69,6 +69,18 @@ export default defineComponent({
         <div class="header-center"></div>
       )
 
+    watch(
+      () => props.activeId,
+      (value) => {
+        if (props.navMode === 'header') {
+          const rootNode = computedRootNode(value, menuMap)!
+          if (rootNode.id !== activeRootId.value) {
+            activeRootId.value = rootNode.id
+            emit('menuChange', rootNode.children)
+          }
+        }
+      }
+    )
     watch(
       () => props.navMode,
       (value) => {
