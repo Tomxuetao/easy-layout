@@ -75,6 +75,9 @@ export default defineComponent({
         if (value === 'aside') {
           activeRootId.value = ''
           emit('menuChange', menuList)
+        } else {
+          const rootNode = computedRootNode(props.activeId, menuMap)!
+          emit('menuChange', rootNode.children)
         }
       }
     )
