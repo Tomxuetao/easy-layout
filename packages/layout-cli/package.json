@@ -34,8 +34,8 @@
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-typescript": "^7.24.1",
-    "@vitejs/plugin-vue": "^5.1.5",
-    "@vitejs/plugin-vue-jsx": "^4.1.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
     "@vue/babel-plugin-jsx": "^1.2.5",
     "autoprefixer": "^10.4.20",
     "commander": "^12.1.0",
@@ -61,7 +61,7 @@
     "terser": "^5.29.2",
     "transliteration": "^2.3.5",
     "typescript": "^5.4.3",
-    "vite": "^5.2.2",
+    "vite": "^6.0.1",
     "vue-router": "^4.3.0"
   }
 }

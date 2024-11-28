@@ -57,11 +57,12 @@ export default defineComponent({
     logo: {};
     fold: {};
     router: {};
+    avatar: {};
     menuIcon: TreeNode;
   }>,
 
   setup(props, { slots, emit }) {
-    const { logo, fold, router, menuIcon } = slots
+    const { logo, fold, router, avatar, menuIcon } = slots
     const { imgBg, navMode, menuList, showCrumb } = props
 
     const menuMap = clapTree(menuList)
@@ -98,9 +99,9 @@ export default defineComponent({
       return (
         <div class="ev-layout" style={`background-image: url(${imgBg})`}>
           <Header
-            v-slots={{ logo }}
             navMode={navMode}
             menuList={menuList}
+            v-slots={{ logo, avatar }}
             v-model={activeRootId.value}
           ></Header>
           <Aside

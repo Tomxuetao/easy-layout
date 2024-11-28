@@ -6,6 +6,7 @@ export default defineComponent({
 
   slots: Object as SlotsType<{
     logo: any;
+    avatar: any;
   }>,
 
   props: {
@@ -30,7 +31,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   setup(props, { slots, emit }) {
-    const { logo } = slots
+    const { logo, avatar } = slots
 
     const { navMode, menuList } = props
 
@@ -63,7 +64,7 @@ export default defineComponent({
         <header class="ev-header">
           <div class="header-left">{logo?.()}</div>
           {renderHeaderCenter()}
-          <div class="header-right"></div>
+          <div class="header-right">{avatar?.()}</div>
         </header>
       )
     }
