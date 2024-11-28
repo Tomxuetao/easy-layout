@@ -77,6 +77,7 @@ export default defineComponent({
           emit('menuChange', menuList)
         } else {
           const rootNode = computedRootNode(props.activeId, menuMap)!
+          activeRootId.value = rootNode.id
           emit('menuChange', rootNode.children)
         }
       }
