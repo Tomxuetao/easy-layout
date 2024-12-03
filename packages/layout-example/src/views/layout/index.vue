@@ -90,10 +90,6 @@ const toggleCollapse = () => {
 }
 
 const navMode = ref('header')
-
-setTimeout(() => {
-  navMode.value = 'aside'
-}, 10000)
 const activeId = ref('1')
 </script>
 
