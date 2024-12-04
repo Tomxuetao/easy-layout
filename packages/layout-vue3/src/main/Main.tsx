@@ -33,7 +33,9 @@ export default defineComponent({
     return () => {
       return (
         <main class="ev-main">
-          <div class="main-inner">
+          <div
+            class={['main-inner', showCrumb.value ? 'main-inner-crumb' : '']}
+          >
             {showCrumb.value && menuList.value.length ? (
               <Crumb
                 menuList={menuList.value}

@@ -63,7 +63,7 @@ export default defineComponent({
 
   setup(props, { slots, emit }) {
     const { logo, fold, router, avatar, menuIcon } = slots
-    const { imgBg, menuList, showCrumb } = props
+    const { imgBg, menuList } = props
 
     const menuMap = clapTree(menuList)
     provide('menuMap', menuMap)
@@ -109,8 +109,8 @@ export default defineComponent({
           <Main
             menuList={menuList}
             v-slots={{ router }}
-            showCrumb={showCrumb}
             activeId={activeId.value}
+            showCrumb={props.showCrumb}
           ></Main>
         </div>
       )

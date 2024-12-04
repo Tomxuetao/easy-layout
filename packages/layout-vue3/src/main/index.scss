@@ -16,10 +16,12 @@
 
   .main-inner {
     display: grid;
-    grid-template-rows: var(--ev-crumb-height) 1fr;
+
+    &-crumb {
+      grid-template-rows: var(--ev-crumb-height) 1fr;
+    }
 
     .inner-ctx {
-      flex: 1;
       margin: var(--ev-main-ctx-margin);
     }
   }
