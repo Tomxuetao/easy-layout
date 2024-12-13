@@ -1,11 +1,11 @@
-import type { PropType } from 'vue'
+import { inject, PropType } from 'vue'
 import { defineComponent, toRefs } from 'vue'
 import { TreeNode } from '../layout/types'
 
-import { ElMenu, ElScrollbar } from 'element-plus'
-
 import { Navbar } from '../navbar'
+import { clapTree } from '../utils'
 import { SlotsType } from 'vue/dist/vue'
+import { ElMenu, ElScrollbar } from 'element-plus'
 
 const asideProps = {
   menuList: {
@@ -47,6 +47,13 @@ export default defineComponent({
     const menuItemClick = (data: TreeNode) => {
       emit('menuItemClick', data as TreeNode)
     }
+    const menuMap: Map<any, TreeNode> =
+      inject('menuMap') || clapTree(menuList.value)
+
+    const tempNode: TreeNode = menuMap.get(activeId.value)!
+    const defaultActive =
+      !tempNode.isMenu && tempNode.url ? tempNode.pid : tempNode.id
+    console.log(menuMap)
 
     return () => {
       if (!menuList.value.length) {
@@ -57,7 +64,7 @@ export default defineComponent({
           <ElScrollbar>
             <ElMenu
               collapse={collapse.value}
-              default-active={activeId.value}
+              default-active={defaultActive}
               unique-opened={uniqueOpened.value}
             >
               {menuList.value.map((item) => (
