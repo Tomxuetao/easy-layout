@@ -1,7 +1,7 @@
 {
   "name": "layout-vue3",
   "private": false,
-  "version": "0.0.23",
+  "version": "0.0.24",
   "files": [
     "es",
     "lib"
