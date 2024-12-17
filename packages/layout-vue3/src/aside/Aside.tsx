@@ -53,7 +53,6 @@ export default defineComponent({
     const tempNode: TreeNode = menuMap.get(activeId.value)!
     const defaultActive =
       !tempNode.isMenu && tempNode.url ? tempNode.pid : tempNode.id
-    console.log(menuMap)
 
     return () => {
       if (!menuList.value.length) {
