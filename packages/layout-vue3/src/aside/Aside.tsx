@@ -1,5 +1,5 @@
-import { inject, PropType } from 'vue'
-import { defineComponent, toRefs } from 'vue'
+import { inject, PropType, watch } from 'vue'
+import { ref, defineComponent, toRefs } from 'vue'
 import { TreeNode } from '../layout/types'
 
 import { Navbar } from '../navbar'
@@ -51,8 +51,19 @@ export default defineComponent({
       inject('menuMap') || clapTree(menuList.value)
 
     const tempNode: TreeNode = menuMap.get(activeId.value)!
-    const defaultActive =
+    const defaultActive = ref(
       !tempNode.isMenu && tempNode.url ? tempNode.pid : tempNode.id
+    )
+
+    watch(
+      () => props.activeId,
+      () => {
+        const tempNode: TreeNode = menuMap.get(activeId.value)!
+
+        defaultActive.value =
+          !tempNode.isMenu && tempNode.url ? tempNode.pid : tempNode.id
+      }
+    )
 
     return () => {
       if (!menuList.value.length) {
@@ -63,8 +74,8 @@ export default defineComponent({
           <ElScrollbar>
             <ElMenu
               collapse={collapse.value}
-              default-active={defaultActive}
               unique-opened={uniqueOpened.value}
+              default-active={defaultActive.value}
             >
               {menuList.value.map((item) => (
                 <Navbar
