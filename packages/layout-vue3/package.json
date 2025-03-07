@@ -1,6 +1,5 @@
 {
   "name": "layout-vue3",
-  "private": false,
   "version": "0.0.26",
   "files": [
     "es",
@@ -17,19 +16,17 @@
     "build": "easy-cli build"
   },
   "devDependencies": {
-    "@types/node": "^22.13.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
     "element-plus": "^2.9.4",
     "layout-cli": "workspace:*",
-    "sass": "^1.85.0",
-    "typescript": "^5.7.3",
-    "unplugin-auto-import": "^0.18.6",
-    "unplugin-vue-components": "^0.27.5",
-    "vite": "^6.1.0",
-    "vite-plugin-dts": "^4.5.0",
-    "vue": "^3.5.13",
-    "vue-tsc": "^2.2.2"
+    "sass": "^1.85.1",
+    "typescript": "^5.8.2",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^6.2.1",
+    "vite-plugin-dts": "^4.5.3",
+    "vue-tsc": "^2.2.8"
   },
   "peerDependencies": {
     "element-plus": "^2.9.4",
