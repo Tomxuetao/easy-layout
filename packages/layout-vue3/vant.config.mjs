@@ -1,7 +1,7 @@
 export default {
-  name: "layout-vue3",
+  name: 'layout-vue3',
   build: {
-    name: "layout-vue3",
+    name: 'layout-vue3',
     packageManager: 'pnpm',
     srcDir: 'src',
     tagPrefix: 'ev-',

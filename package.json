@@ -1,5 +1,6 @@
 {
   "name": "easy-layout",
+  "packageManager": "pnpm@10.5.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Tomxuetao/easy-layout.git"
@@ -18,26 +19,26 @@
   "devDependencies": {
     "@changesets/changelog-git": "^0.2.1",
     "@changesets/cli": "^2.28.1",
-    "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.7.1",
-    "@eslint/js": "^9.21.0",
-    "@types/eslint__js": "^8.42.3",
-    "@types/node": "^22.13.9",
-    "@typescript-eslint/eslint-plugin": "^8.26.0",
-    "@typescript-eslint/parser": "^8.26.0",
-    "eslint": "^9.21.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-vue": "^9.33.0",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint/js": "^9.22.0",
+    "@types/node": "^22.13.10",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "eslint": "^9.22.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "vue-eslint-parser": "^10.1.1",
+    "eslint-config-prettier": "^10.1.1",
     "git-cz": "^4.9.0",
-    "globals": "^15.15.0",
+    "globals": "^16.0.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0"
+    "typescript-eslint": "^8.26.1"
   },
   "engines": {
-    "pnpm": ">= 9.0.0"
+    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
   },
   "nano-staged": {
     "*.md": "prettier --write",
