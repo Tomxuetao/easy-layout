@@ -3,11 +3,11 @@ import { TreeNode } from '../layout/types'
 import { clapTree, computedRootNode } from '../utils'
 
 export default defineComponent({
-  name: 'EvHeader',
+  name: 'ev-header',
 
   slots: Object as SlotsType<{
-    logo: any;
-    avatar: any;
+    logo: any
+    avatar: any
   }>,
 
   props: {

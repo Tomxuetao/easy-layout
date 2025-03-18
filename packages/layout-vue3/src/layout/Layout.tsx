@@ -12,7 +12,7 @@ import { Header } from '../header'
 import { clapTree, computedRootNode } from '../utils'
 
 export default defineComponent({
-  name: 'EvLayout',
+  name: 'ev-layout',
 
   props: {
     imgBg: {
@@ -54,11 +54,11 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   slots: Object as SlotsType<{
-    logo: {};
-    fold: {};
-    router: {};
-    avatar: {};
-    menuIcon: TreeNode;
+    logo: {}
+    fold: {}
+    router: {}
+    avatar: {}
+    menuIcon: TreeNode
   }>,
 
   setup(props, { slots, emit }) {

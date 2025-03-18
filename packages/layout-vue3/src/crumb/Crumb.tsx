@@ -9,7 +9,7 @@ import { TreeNode } from '../layout/types'
 import { clapTree } from '../utils'
 
 export default defineComponent({
-  name: 'EvCrumb',
+  name: 'ev-crumb',
 
   props: {
     menuList: {

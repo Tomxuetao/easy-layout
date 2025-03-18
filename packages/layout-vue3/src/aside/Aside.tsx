@@ -30,14 +30,14 @@ const asideProps = {
 }
 
 export default defineComponent({
-  name: 'EvAside',
+  name: 'ev-aside',
   props: asideProps,
 
   emits: ['menuItemClick'],
 
   slots: Object as SlotsType<{
-    fold: any;
-    menuIcon: TreeNode;
+    fold: any
+    menuIcon: TreeNode
   }>,
 
   setup(props, { slots, emit }) {

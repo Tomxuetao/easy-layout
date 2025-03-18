@@ -21,6 +21,8 @@
     "vue-tsc": "^2.2.8",
     "typescript": "^5.8.2",
     "vite-svg-loader": "^5.1.0",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-vue-components": "^28.4.1",
     "rollup-plugin-visualizer": "^5.14.0"
   }
 }

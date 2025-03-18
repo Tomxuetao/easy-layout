@@ -3,10 +3,10 @@ import { TreeNode } from '../layout/types'
 import { defineComponent, PropType, SlotsType, toRefs } from 'vue'
 
 export default defineComponent({
-  name: 'EvMain',
+  name: 'ev-main',
 
   slots: Object as SlotsType<{
-    router: any;
+    router: any
   }>,
 
   props: {

@@ -10,6 +10,7 @@ export default {
       esm: '.mjs'
     },
     css: {
+      preprocessor: 'sass',
       removeSourceFile: true
     }
   }

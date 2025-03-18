@@ -5,10 +5,10 @@ import { TreeNode } from '../layout/types'
 import { ElSubMenu, ElMenuItem } from 'element-plus'
 
 export default defineComponent({
-  name: 'EvNavbar',
+  name: 'ev-navbar',
 
   slots: Object as SlotsType<{
-    menuIcon: TreeNode;
+    menuIcon: TreeNode
   }>,
 
   props: {
