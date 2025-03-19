@@ -1,6 +1,14 @@
 {
   "name": "layout-vue3",
-  "version": "0.0.28",
+  "version": "0.0.29",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tomxuetao/easy-layout.git"
+  },
+  "homepage": "https://github.com/Tomxuetao/easy-layout/blob/main/README.md",
+  "bugs": {
+    "url": "https://github.com/Tomxuetao/easy-layout/issues"
+  },
   "files": [
     "es",
     "lib"
