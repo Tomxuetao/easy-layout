@@ -12,7 +12,7 @@
     "version": "changeset version",
     "preinstall": "npx only-allow pnpm",
     "dev": "pnpm --dir packages/layout-example dev",
-    "build": "pnpm --dir packages/layout-vue3 build",
+    "build": "pnpm -r --filter='./packages/*' run build",
     "build:example": "pnpm --dir packages/layout-example build",
     "lint": "eslint ./packages/**/src --ext .js,.ts,.tsx,.vue,.mjs,.cjs --fix"
   },

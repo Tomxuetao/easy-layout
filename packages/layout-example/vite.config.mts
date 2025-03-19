@@ -34,6 +34,16 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsInlineLimit: 2048,
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vue': ['vue'],
+          'vue-router': ['vue-router'],
+          'layout-vue3': ['layout-vue3'],
+          'element-plus': ['element-plus']
+        }
+      }
+    }
   }
 })
