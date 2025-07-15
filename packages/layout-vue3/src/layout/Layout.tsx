@@ -1,10 +1,12 @@
 import { TreeNode } from './types'
-import {type PropType,
+import {
+  type PropType,
   type SlotsType,
   defineComponent,
   ref,
   provide,
-  watch} from 'vue'
+  watch
+} from 'vue'
 
 import { Main } from '../main'
 import { Aside } from '../aside'
@@ -30,6 +32,7 @@ export default defineComponent({
       required: false,
       default: () => false
     },
+
     menuList: {
       required: true,
       default: () => [],
@@ -48,6 +51,10 @@ export default defineComponent({
     modelValue: {
       required: true,
       type: String || Number || Symbol
+    },
+    customCrumbs: {
+      type: Array as PropType<TreeNode[]>,
+      required: false
     }
   },
 
@@ -81,6 +88,16 @@ export default defineComponent({
       activeId.value = data.id
     }
 
+    const menuChange = (menuList: TreeNode[]) => {
+      asideMenuList.value = menuList
+      menuItemClick(menuList[0])
+    }
+
+    const headerMenuItemClick = (data: TreeNode) => {
+      menuItemClick(data)
+      asideMenuList.value = []
+    }
+
     watch(
       () => props.modelValue,
       () => {
@@ -96,7 +113,8 @@ export default defineComponent({
             navMode={props.navMode}
             activeId={activeId.value}
             v-slots={{ logo, avatar }}
-            onMenuChange={(menuList) => (asideMenuList.value = menuList)}
+            onMenuChange={(menuList) => menuChange(menuList)}
+            onMenuItemClick={(data) => headerMenuItemClick(data)}
           ></Header>
           <Aside
             activeId={activeId.value}
@@ -111,6 +129,7 @@ export default defineComponent({
             v-slots={{ router }}
             activeId={activeId.value}
             showCrumb={props.showCrumb}
+            customCrumbs={props.showCrumb ? props.customCrumbs : []}
           ></Main>
         </div>
       )

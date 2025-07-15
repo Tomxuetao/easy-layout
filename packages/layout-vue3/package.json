@@ -1,14 +1,20 @@
 {
   "name": "layout-vue3",
-  "version": "0.0.29",
+  "version": "0.0.36",
   "repository": {
     "type": "git",
     "url": "https://github.com/Tomxuetao/easy-layout.git"
   },
-  "homepage": "https://github.com/Tomxuetao/easy-layout/blob/main/README.md",
   "bugs": {
     "url": "https://github.com/Tomxuetao/easy-layout/issues"
   },
+  "homepage": "https://github.com/Tomxuetao/easy-layout/blob/main/README.md",
+  "keywords": [
+    "vue3",
+    "admin",
+    "layout",
+    "layout-vue3"
+  ],
   "files": [
     "es",
     "lib"
@@ -24,20 +30,20 @@
     "build": "vant-cli build"
   },
   "devDependencies": {
-    "@vant/cli": "^7.1.0",
     "@types/markdown-it": "^14.1.2",
-    "@vitejs/plugin-vue": "^5.2.3",
-    "@vitejs/plugin-vue-jsx": "^4.1.2",
-    "element-plus": "^2.9.6",
-    "sass": "^1.86.0",
-    "vite": "^6.2.2",
-    "vite-plugin-dts": "^4.5.3",
-    "vue": "^3.5.13",
-    "vue-tsc": "^2.2.8"
+    "@vant/cli": "^7.1.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vitejs/plugin-vue-jsx": "^5.0.1",
+    "element-plus": "^2.10.4",
+    "sass": "^1.89.2",
+    "vite": "^7.0.4",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.17",
+    "vue-tsc": "^3.0.1"
   },
   "peerDependencies": {
-    "element-plus": "^2.9.4",
-    "vue": "^3.5.13"
+    "element-plus": "^2.10.4",
+    "vue": "^3.5.17"
   },
   "engines": {
     "pnpm": ">= 10.2.1"

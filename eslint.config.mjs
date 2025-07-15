@@ -31,7 +31,6 @@ export default tseslint.config(
       'import/no-extraneous-dependencies': 'off',
       'no-plusplus': ['off', { allowForLoopAfterthoughts: true }],
       'newline-per-chained-call': ['error', { ignoreChainWithDepth: 10 }],
-      'object-curly-newline': ['error', { ImportDeclaration: 'never', ExportDeclaration: 'never' }],
       'vue/no-v-html': 'off',
       'vue/no-template-shadow': 'off',
       'vue/require-default-prop': 'off',
@@ -39,6 +38,13 @@ export default tseslint.config(
       'vue/multi-word-component-names': ['error', {
         ignores: ['index', 'login', 'r']
       }],
+      'object-curly-newline': [
+        'error',
+        {
+          ExportDeclaration: { multiline: true, minProperties: 3 },
+          ImportDeclaration: { multiline: true, minProperties: 3 }
+        }
+      ],
       '@typescript-eslint/camelcase': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-unused-vars': 'error',

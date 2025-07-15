@@ -1,5 +1,9 @@
-import { inject, PropType, watch } from 'vue'
-import { ref, defineComponent, toRefs } from 'vue'
+import {
+  inject, PropType, watch 
+} from 'vue'
+import {
+  ref, defineComponent, toRefs 
+} from 'vue'
 import { TreeNode } from '../layout/types'
 
 import { Navbar } from '../navbar'

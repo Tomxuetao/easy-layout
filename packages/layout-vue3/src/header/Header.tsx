@@ -1,4 +1,6 @@
-import { SlotsType, PropType, defineComponent, inject, ref, watch } from 'vue'
+import {
+  SlotsType, PropType, defineComponent, inject, ref, watch 
+} from 'vue'
 import { TreeNode } from '../layout/types'
 import { clapTree, computedRootNode } from '../utils'
 
@@ -28,7 +30,7 @@ export default defineComponent({
     }
   },
 
-  emits: ['menuChange'],
+  emits: ['menuChange', 'menuItemClick'],
 
   setup(props, { slots, emit }) {
     const { logo, avatar } = slots
@@ -45,7 +47,12 @@ export default defineComponent({
     const changeMenu = (menu: TreeNode) => {
       if (menu.id !== activeRootId.value) {
         activeRootId.value = menu.id
-        emit('menuChange', menu.children)
+        const tempList = menu.children.filter((item) => item.isMenu)
+        if (tempList.length > 0) {
+          emit('menuChange', tempList)
+        } else {
+          emit('menuItemClick', menu)
+        }
       }
     }
 

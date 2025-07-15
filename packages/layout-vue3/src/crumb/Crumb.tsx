@@ -1,31 +1,36 @@
-import {defineComponent,
-  inject,
-  type PropType,
+import {
   type Ref,
+  type PropType,
   ref,
+  watch,
   toRefs,
-  watch} from 'vue'
-import { TreeNode } from '../layout/types'
+  inject,
+  defineComponent
+} from 'vue'
 import { clapTree } from '../utils'
+import { TreeNode } from '../layout/types'
 
 export default defineComponent({
   name: 'ev-crumb',
 
   props: {
+    activeId: {
+      required: true,
+      type: String
+    },
     menuList: {
       required: true,
       default: () => [],
       type: Array as PropType<TreeNode[]>
     },
-
-    activeId: {
-      required: true,
-      type: String
+    customCrumbs: {
+      type: Array as PropType<TreeNode[]>,
+      required: false
     }
   },
 
   setup(props) {
-    const { menuList, activeId } = toRefs(props)
+    const { activeId, menuList, customCrumbs } = toRefs(props)
     const menuMap: Map<string, TreeNode> =
       inject('menuMap') || clapTree(menuList.value)
 
@@ -49,7 +54,9 @@ export default defineComponent({
     watch(
       () => activeId.value,
       () => {
-        crumbList.value = generateCrumb(menuMap.get(activeId.value)!)
+        crumbList.value = customCrumbs.value?.length
+          ? customCrumbs.value
+          : generateCrumb(menuMap.get(activeId.value)!)
       },
       {
         immediate: true

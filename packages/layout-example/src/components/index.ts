@@ -1,6 +1,8 @@
 import type { App } from 'vue'
 import IconSvg from '@/components/svg-icon.vue'
-import { Main, Aside, Crumb, Header, Navbar, Layout } from 'layout-vue3'
+import {
+  Main, Aside, Crumb, Header, Navbar, Layout 
+} from 'layout-vue3'
 
 export default (app: App) => {
   app.component('IconSvg', IconSvg)

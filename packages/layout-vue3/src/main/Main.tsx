@@ -1,6 +1,8 @@
 import { Crumb } from '../crumb'
 import { TreeNode } from '../layout/types'
-import { defineComponent, PropType, SlotsType, toRefs } from 'vue'
+import {
+  defineComponent, PropType, SlotsType, toRefs 
+} from 'vue'
 
 export default defineComponent({
   name: 'ev-main',
@@ -23,11 +25,15 @@ export default defineComponent({
       required: true,
       default: () => [],
       type: Array as PropType<TreeNode[]>
+    },
+    customCrumbs: {
+      type: Array as PropType<TreeNode[]>,
+      required: false
     }
   },
 
   setup(props, { slots }) {
-    const { menuList, activeId, showCrumb } = toRefs(props)
+    const { activeId, showCrumb, menuList, customCrumbs } = toRefs(props)
 
     const { router } = slots
     return () => {
@@ -40,6 +46,7 @@ export default defineComponent({
               <Crumb
                 menuList={menuList.value}
                 activeId={activeId.value}
+                customCrumbs={showCrumb.value ? customCrumbs.value : []}
               ></Crumb>
             ) : (
               ''

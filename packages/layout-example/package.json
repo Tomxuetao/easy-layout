@@ -7,22 +7,20 @@
     "build": "vue-tsc && vite build"
   },
   "dependencies": {
-    "axios": "^1.8.3",
-    "element-plus": "^2.9.6",
+    "axios": "^1.10.0",
+    "element-plus": "^2.10.4",
     "layout-vue3": "workspace:^",
     "normalize.css": "^8.0.1",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@types/node": "^22.13.10",
-    "@vitejs/plugin-vue": "^5.2.3",
+    "@types/node": "^22.16.3",
+    "@vitejs/plugin-vue": "^6.0.0",
     "rollup-plugin-visualizer": "^5.14.0",
-    "typescript": "^5.8.2",
-    "unplugin-auto-import": "^19.1.1",
-    "unplugin-vue-components": "^28.4.1",
-    "vite": "^6.2.2",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.4",
     "vite-svg-loader": "^5.1.0",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "^3.0.1"
   }
 }

@@ -31,6 +31,13 @@ export default defineConfig({
     ],
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
   build: {
     outDir: 'dist',
     assetsInlineLimit: 2048,
@@ -38,7 +45,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'vue': ['vue'],
+          vue: ['vue'],
           'vue-router': ['vue-router'],
           'layout-vue3': ['layout-vue3'],
           'element-plus': ['element-plus']
